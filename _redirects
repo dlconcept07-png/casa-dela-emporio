@@ -1,0 +1,39 @@
+# Casa Dela Emporio: caminhos das fotos.
+# Salvar este arquivo como _redirects, sem extensao, ao lado do index.html.
+# As fotos com hash ja estao publicadas na raiz do site.
+# Status 200: serve a imagem correta sem redirecionamento externo.
+
+/assets/casadela-20260930/img12_equipe4.068ff3218f90.jpg /img12_equipe4.068ff3218f90.jpg 200
+/assets/casadela-20260930/img13_canela.2f287a02f108.jpg /img13_canela.2f287a02f108.jpg 200
+/assets/casadela-20260930/img14_cha.e949d725144f.jpg /img14_cha.e949d725144f.jpg 200
+/assets/casadela-20260930/img15_bolo.183b80bf5e29.jpg /img15_bolo.183b80bf5e29.jpg 200
+/assets/casadela-20260930/img16_prateleira.d07e893074bd.jpg /img16_prateleira.d07e893074bd.jpg 200
+/assets/casadela-20260930/img17_barras.22eb40799b5e.jpg /img17_barras.22eb40799b5e.jpg 200
+/assets/casadela-20260930/img18_fachada.602ea0001dae.jpg /img18_fachada.602ea0001dae.jpg 200
+/assets/casadela-20260930/img1_sign.8014799e8f5f.webp /img1_sign.8014799e8f5f.webp 200
+/assets/casadela-20260930/img20_hero_logo.bd1e0868bcd9.webp /img20_hero_logo.bd1e0868bcd9.webp 200
+/assets/casadela-20260930/img21_equipe_olhando.7b23c82c9b5c.jpg /img21_equipe_olhando.7b23c82c9b5c.jpg 200
+/assets/casadela-20260930/img23_farinha.be4c1193f651.webp /img23_farinha.be4c1193f651.webp 200
+/assets/casadela-20260930/img24_mel.ccec5ea8a23c.webp /img24_mel.ccec5ea8a23c.webp 200
+/assets/casadela-20260930/img25_castanhas.337bdb28b217.webp /img25_castanhas.337bdb28b217.webp 200
+/assets/casadela-20260930/img26_cesta.620b07b34382.jpg /img26_cesta.620b07b34382.jpg 200
+/assets/casadela-20260930/img27_bombom.d09889800b6d.jpg /img27_bombom.d09889800b6d.jpg 200
+/assets/casadela-20260930/img28_barra_pistache.bab767d9eaf2.jpg /img28_barra_pistache.bab767d9eaf2.jpg 200
+/assets/casadela-20260930/img29_nuno.ce16fa819219.jpg /img29_nuno.ce16fa819219.jpg 200
+/assets/casadela-20260930/img30_incenso.872f27ea83b9.jpg /img30_incenso.872f27ea83b9.jpg 200
+/assets/casadela-20260930/img31_pasta_tomate.68c2978423d1.jpg /img31_pasta_tomate.68c2978423d1.jpg 200
+/assets/casadela-20260930/img32_pasta_alho.dbe7080fed24.jpg /img32_pasta_alho.dbe7080fed24.jpg 200
+/assets/casadela-20260930/img33_cafe_tulha.a6c1b85863e2.jpg /img33_cafe_tulha.a6c1b85863e2.jpg 200
+/assets/casadela-20260930/img34_azeite_shitake.0d6e6dcdd8b9.jpg /img34_azeite_shitake.0d6e6dcdd8b9.jpg 200
+/assets/casadela-20260930/img35_doce_fruta.4822a5645393.jpg /img35_doce_fruta.4822a5645393.jpg 200
+/assets/casadela-20260930/img36_banana_passa.4149668d9617.jpg /img36_banana_passa.4149668d9617.jpg 200
+/assets/casadela-20260930/img37_ervas.ae71f5fa7032.jpg /img37_ervas.ae71f5fa7032.jpg 200
+/assets/casadela-20260930/img38_cha_pour.f8efb18384b2.jpg /img38_cha_pour.f8efb18384b2.jpg 200
+/assets/casadela-20260930/img39_fachada_ia.48fd94936d66.jpg /img39_fachada_ia.48fd94936d66.jpg 200
+/assets/casadela-20260930/img3_doces.2fffb14aeeae.jpg /img3_doces.2fffb14aeeae.jpg 200
+/assets/casadela-20260930/img40_fundadoras.898cb5d55dd3.jpg /img40_fundadoras.898cb5d55dd3.jpg 200
+/assets/casadela-20260930/img4_balloons.6fb510bfc308.jpg /img4_balloons.6fb510bfc308.jpg 200
+/assets/casadela-20260930/img5_difusor.b2b419212a74.webp /img5_difusor.b2b419212a74.webp 200
+/assets/casadela-20260930/img7_granola.56814e271ce7.webp /img7_granola.56814e271ce7.webp 200
+/assets/casadela-20260930/logo_full_uri.c758a001f31c.webp /logo_full_uri.c758a001f31c.webp 200
+/assets/casadela-20260930/logo_icon_uri.99cc967a0f67.png /logo_icon_uri.99cc967a0f67.png 200
