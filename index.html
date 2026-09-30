@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Dela Empório | Um espaço acolhedor</title>
+<meta name="description" content="A Casa Dela Empório é um espaço acolhedor, onde você encontra produtos naturais de qualidade e sabor. Venha conferir!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" id="favicon" type="image/png" href="assets/casadela-20260930/logo_icon_uri.99cc967a0f67.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+  :root{
+    --marrom: #642A08;
+    --marrom-escuro: #3A1708;
+    --creme: #F5EFE5;
+    --off-white: #FFFDF8;
+    --dourado: #B99A68;
+    --verde: #5E6247;
+    --serif: 'Oswald', sans-serif;
+    --sans: 'Georgia', serif;
+    --script: 'Marcellus', serif;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family: var(--sans);
+    background: var(--off-white);
+    color: var(--marrom-escuro);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img, .ph{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  h1,h2,h3{ font-family:var(--serif); font-weight:600; letter-spacing:.01em; }
+  .script{ font-family:var(--script); font-weight:400; }
+
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 6vw; }
+  section{ position:relative; }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- placeholder image blocks ---------- */
+  .ph{
+    position:relative;
+    width:100%;
+    background:
+      repeating-linear-gradient(135deg, rgba(185,154,104,.10) 0 2px, transparent 2px 14px),
+      linear-gradient(155deg, #7a3a12 0%, var(--marrom) 45%, var(--marrom-escuro) 100%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    overflow:hidden;
+    border:1px solid rgba(245,239,229,.15);
+  }
+  .ph::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23F5EFE5' stroke-opacity='0.08' stroke-width='1.5'%3E%3Cpath d='M20 120 C 20 80, 45 60, 40 20'/%3E%3Cpath d='M40 55 C 55 50, 60 40, 55 25'/%3E%3Cpath d='M35 80 C 20 78, 10 68, 8 55'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:140px 140px;
+    opacity:.6;
+  }
+  .ph-photo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
+  .ph.has-photo::before{ display:none; }
+  .ph-icon{ position:relative; z-index:2; width:30%; max-width:64px; opacity:.92; }
+  .ph-icon svg{ width:100%; height:auto; }
+  .ph-caption{
+    position:relative; z-index:2;
+    color:rgba(245,239,229,.55);
+    font-family: 'Oswald', sans-serif; font-weight: 500; font-size:.62rem;
+    letter-spacing:.08em; text-transform:uppercase;
+    margin-top:.7rem; text-align:center; padding:0 1rem;
+  }
+
+  /* ---------- botanical divider (signature element) ---------- */
+  .sprig{ display:flex; justify-content:center; margin:0 auto; }
+  .sprig svg{ width:64px; height:auto; overflow:visible; }
+  .sprig path, .sprig circle{ transition:transform 1.2s var(--ease); transform-origin:bottom center; }
+  .sprig.in path.leaf{ animation:sway 6s ease-in-out infinite; }
+  @keyframes sway{
+    0%,100%{ transform:rotate(0deg); }
+    50%{ transform:rotate(2.5deg); }
+  }
+
+  /* ================= HEADER ================= */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(255,253,248,0);
+    transition:background .5s var(--ease), box-shadow .5s var(--ease), padding .4s var(--ease);
+    padding:1.6rem 0;
+  }
+  header.scrolled{
+    background:rgba(255,253,248,.94);
+    box-shadow:0 8px 30px -12px rgba(58,23,8,.18);
+    padding:.9rem 0;
+    backdrop-filter:blur(8px);
+  }
+  header .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{
+    font-family:var(--serif); font-weight:700; font-size:1.5rem;
+    color:var(--off-white); letter-spacing:.02em;
+    display:flex; align-items:center; gap:.7rem;
+    transition:color .5s var(--ease);
+  }
+  header.scrolled .logo{ color:var(--marrom-escuro); }
+  .logo .script{ font-size:1.1rem; color:var(--dourado); }
+  .logo-icon-img{
+    height:42px; width:42px; object-fit:cover; border-radius:50%;
+    box-shadow:0 0 0 1px rgba(245,239,229,.35);
+    transition:box-shadow .5s var(--ease);
+  }
+  header.scrolled .logo-icon-img{ box-shadow:0 0 0 1px rgba(58,23,8,.18); }
+  .logo-wordmark{ display:flex; align-items:baseline; gap:.35rem; }
+  .logo-full-img{ display:block; }
+  .mobile-logo{ width:120px; margin-bottom:1rem; border-radius:6px; }
+  .footer-logo{ width:88px; border-radius:6px; margin-bottom:1.1rem; }
+  @media (max-width:640px){ .logo-wordmark{ font-size:1.15rem; } }
+
+  nav.desktop-nav{ display:flex; gap:2.4rem; }
+  nav.desktop-nav a{
+    font-family: 'Oswald', sans-serif; font-weight: 500;
+    font-size:.86rem; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--off-white); position:relative; padding-bottom:4px;
+    transition:color .5s var(--ease);
+  }
+  header.scrolled nav.desktop-nav a{ color:var(--marrom-escuro); }
+  nav.desktop-nav a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--dourado); transition:width .35s var(--ease);
+  }
+  nav.desktop-nav a:hover::after{ width:100%; }
+
+  .header-actions{ display:flex; align-items:center; gap:1.2rem; }
+  .btn-nav-cta{
+    border:1px solid var(--dourado); color:var(--off-white);
+    padding:.55rem 1.3rem; font-size:.78rem; letter-spacing:.09em; text-transform:uppercase;
+    transition:.4s var(--ease); border-radius:1px;
+  }
+  header.scrolled .btn-nav-cta{ color:var(--marrom-escuro); border-color:var(--marrom); }
+  .btn-nav-cta:hover{ background:var(--dourado); color:var(--marrom-escuro); }
+
+  .hamburger{ display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:101; }
+  .hamburger span{ width:26px; height:1.5px; background:var(--off-white); transition:.4s var(--ease); }
+  header.scrolled .hamburger span{ background:var(--marrom-escuro); }
+  .hamburger.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2){ opacity:0; }
+  .hamburger.open span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu{
+    position:fixed; inset:0; background:var(--marrom-escuro); z-index:99;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2.2rem;
+    transform:translateY(-100%); transition:transform .55s var(--ease);
+  }
+  .mobile-menu.open{ transform:translateY(0); }
+  .mobile-menu a{ font-family:var(--serif); font-size:1.6rem; color:var(--creme); }
+
+  /* ================= HERO ================= */
+  .hero{ min-height:100vh; height:auto; padding-top:10vh; padding-bottom:2rem; display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden; }
+  .hero .ph{ position:absolute; right:0; top:0; height:100%; width: 50%; z-index: 1; border:none; }
+  .hero-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, #185A2D 0%, #185A2D 50%, transparent 100%);
+    z-index: 2;
+  }
+  .hero-content{ position:relative; z-index:3; width:100%; color:var(--off-white); }
+  .hero-text-panel{
+    display:inline-block; max-width:600px;
+    background:transparent;
+    border-left:none;
+    padding:0;
+    text-shadow:0 2px 10px rgba(0,0,0,0.2);
+  }
+  .hero-eyebrow{ font-family: 'Oswald', sans-serif; font-weight: 500; font-size:1.1rem; color:var(--off-white); margin-bottom:1rem; text-transform: uppercase; letter-spacing: 0.15em; }
+  .hero h1{ font-size:clamp(2.2rem, 5vw, 3.5rem); line-height:1.2; margin-bottom:1.5rem; color:var(--off-white); text-wrap: balance; }
+  .hero-sub{ font-size:1.15rem; max-width:520px; color:var(--off-white); margin-bottom:1rem; }
+  .hero-quote{ display: none; }
+  .hero-btns{ display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; margin-bottom:2.4rem; }
+
+  .btn{
+    font-family: 'Oswald', sans-serif; font-weight: 500;
+    display:inline-block; padding:.95rem 2rem; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase;
+    transition:.4s var(--ease); border-radius:1px; cursor:pointer; border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--dourado); color:var(--marrom-escuro); }
+  .btn-primary:hover{ background:var(--creme); }
+  .btn-outline{ border-color:var(--creme); color:var(--creme); }
+  .btn-outline:hover{ background:var(--creme); color:var(--marrom-escuro); }
+  .btn-dark{ background:var(--marrom-escuro); color:var(--creme); }
+  .btn-dark:hover{ background:var(--marrom); }
+
+  .status-pill{
+    display:inline-flex; align-items:center; gap:.6rem;
+    background:rgba(245,239,229,.1); border:1px solid rgba(245,239,229,.28);
+    padding:.65rem 1.1rem; font-size:.82rem; backdrop-filter:blur(6px);
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .dot.open{ background:#7CA982; box-shadow:0 0 0 4px rgba(124,169,130,.25); }
+  .dot.closed{ background:#C9694F; box-shadow:0 0 0 4px rgba(201,105,79,.25); }
+
+  /* ================= SOBRE ================= */
+  .sobre{ padding:8rem 0; background:var(--off-white); }
+  .sobre .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+  .sobre .ph{ aspect-ratio:2/3; }
+  .eyebrow{ font-family: 'Oswald', sans-serif; font-weight: 500; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:var(--verde); margin-bottom:1rem; }
+  .sobre h2{ font-size:clamp(1.9rem,3.4vw,2.6rem); margin-bottom:1.6rem; color:var(--marrom); }
+  .sobre p{ color:#5a4636; font-size:1.02rem; margin-bottom:1.1rem; max-width:480px; }
+
+  /* ================= PRODUTOS ================= */
+  .produtos{ padding:7rem 0; background:var(--creme); }
+  .section-head{ text-align:center; max-width:600px; margin:0 auto 3.5rem; }
+  .section-head h2{ font-size:clamp(2rem,4vw,2.8rem); color:var(--marrom); margin-bottom:.8rem; }
+  .section-head p{ color:#6b5847; font-size:1.02rem; }
+
+  .cat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.6rem; }
+  .cat-grid .card:nth-child(5),.cat-grid .card:nth-child(6),.cat-grid .card:nth-child(7){ grid-column:span 1; }
+  .card{ background:var(--off-white); overflow:hidden; box-shadow:0 14px 40px -22px rgba(58,23,8,.25); }
+  .card .ph{ aspect-ratio:3/3.6; transition:transform .8s var(--ease); }
+  .card:hover .ph{ transform:scale(1.045); }
+  .card-body{ padding:1.4rem 1.3rem 1.6rem; }
+  .card-body h3{ font-size:1.15rem; color:var(--marrom); margin-bottom:.4rem; }
+  .card-body p{ font-size:.86rem; color:#7a6a58; margin-bottom:1rem; }
+  .card-link{
+    font-size:.76rem; letter-spacing:.1em; text-transform:uppercase; color:var(--verde);
+    border:none; border-bottom:1px solid var(--verde); padding:0 0 2px; background:none;
+    font-family:var(--sans); cursor:pointer;
+  }
+
+  /* ================= ESCOLHAS DA CASA ================= */
+  .escolhas{ padding:7rem 0; background:var(--off-white); }
+  .prod-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.2rem; }
+  .prod-card .ph{ aspect-ratio:1/1; margin-bottom:1.1rem; }
+  .prod-card h3{ font-size:1.05rem; color:var(--marrom); margin-bottom:.3rem; }
+  .prod-card p{ font-size:.85rem; color:#7a6a58; }
+
+  /* ================= AVALIAÇÕES ================= */
+  .avaliacoes{ padding:6.5rem 0; background:var(--off-white); }
+  .rating-summary{ display:flex; align-items:center; justify-content:center; gap:.6rem; margin-top:.6rem; flex-wrap:wrap; }
+  .rating-stars{ color:var(--dourado); font-size:1.3rem; letter-spacing:.15em; }
+  .rating-number{ font-family:var(--serif); font-size:1.3rem; color:var(--marrom); font-weight:700; }
+  .rating-count{ font-size:.88rem; color:#7a6a58; }
+  .avaliacoes-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; margin-top:3rem; }
+  .avaliacao-card{
+    background:var(--creme); padding:1.8rem 1.6rem; border-left:2px solid var(--dourado);
+    font-size:.92rem; color:#5a4636; font-style:italic; line-height:1.55;
+  }
+  .avaliacoes-cta{ text-align:center; margin-top:2.6rem; }
+  @media (max-width:980px){ .avaliacoes-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:640px){ .avaliacoes-grid{ grid-template-columns:1fr; } }
+
+  /* ================= BANNER EXPERIÊNCIA ================= */
+  .experiencia{ height:64vh; min-height:420px; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .experiencia .ph{ position:absolute; inset:0; border:none; }
+  .experiencia .hero-overlay{ background:linear-gradient(180deg, rgba(58,23,8,.6), rgba(58,23,8,.72)); }
+  .exp-content{ position:relative; z-index:2; color:var(--off-white); padding:0 6vw; }
+  .exp-content h2{ font-size:clamp(1.8rem,4.2vw,3rem); margin-bottom:1rem; max-width:640px; margin-left:auto; margin-right:auto; }
+  .exp-content p{ color:var(--creme); max-width:460px; margin:0 auto 2rem; opacity:.9; }
+  .exp-quote-panel{
+    display:inline-block; color:var(--creme) !important; opacity:1 !important;
+    background:#2E1A10; padding:.9rem 1.4rem; border-radius:2px;
+  }
+
+  /* ================= VISITE A CASA ================= */
+  .visite{ padding:7.5rem 0; background:var(--marrom-escuro); color:var(--creme); }
+  .visite .section-head h2{ color:var(--off-white); }
+  .visite .section-head p{ color:rgba(245,239,229,.75); }
+  .visite-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:3rem; align-items:start; }
+  .map-frame{ width:100%; aspect-ratio:4/3; border:1px solid rgba(245,239,229,.2); overflow:hidden; }
+  .fachada-photo{ aspect-ratio:5/4; margin-bottom:1rem; border:1px solid rgba(245,239,229,.2); background:var(--marrom-escuro); }
+  .fachada-photo .ph-photo{ object-fit: contain; object-position: center; }
+  .map-frame iframe{ width:100%; height:100%; border:0; filter:grayscale(.15) sepia(.12); }
+  .addr-line{ display:flex; align-items:center; gap:.6rem; margin:1.3rem 0 1.6rem; font-size:1rem; color:var(--dourado); }
+
+  .hours-card{ background:rgba(245,239,229,.05); border:1px solid rgba(245,239,229,.18); padding:2.2rem; }
+  .hours-card h3{ font-family:var(--serif); font-size:1.3rem; margin-bottom:1.4rem; color:var(--off-white); }
+  .hours-list{ display:flex; flex-direction:column; gap:.05rem; margin-bottom:1.6rem; }
+  .hours-row{
+    display:flex; justify-content:space-between; padding:.7rem 0;
+    border-bottom:1px solid rgba(245,239,229,.1); font-size:.92rem;
+  }
+  .hours-row span:first-child{ color:rgba(245,239,229,.65); }
+  .hours-row.today{ color:var(--off-white); }
+  .hours-row.today span:first-child{ color:var(--dourado); font-weight:500; }
+  .hours-row.unset span:last-child{ font-style:italic; color:rgba(245,239,229,.5); }
+  .status-pill.dark{ background:rgba(245,239,229,.06); }
+
+  /* ================= CONTATO ================= */
+  .contato{ padding:7rem 0; background:var(--creme); text-align:center; }
+  .contato .section-head{ margin-bottom:2.6rem; }
+  .contato-btns{ display:flex; justify-content:center; gap:1.1rem; flex-wrap:wrap; }
+
+  /* ================= INSTAGRAM ================= */
+  .insta{ padding:7rem 0; background:var(--off-white); }
+  .insta-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:.5rem; }
+  .insta-grid .ph{ aspect-ratio:1/1; }
+  .insta-handle{ text-align:center; margin-top:1.6rem; font-size:.9rem; }
+  .insta-handle a{ color:var(--verde); letter-spacing:.04em; border-bottom:1px solid transparent; transition:border-color .3s var(--ease); }
+  .insta-handle a:hover{ border-color:var(--verde); }
+
+  /* ================= NEWSLETTER ================= */
+  .newsletter{ background:var(--marrom); padding:5.5rem 0; text-align:center; color:var(--off-white); }
+  .newsletter h2{ font-size:clamp(1.8rem,3.6vw,2.4rem); margin-bottom:.7rem; }
+  .newsletter p{ color:rgba(245,239,229,.8); margin-bottom:2rem; }
+  .nl-form{ display:flex; max-width:440px; margin:0 auto; gap:.7rem; flex-wrap:wrap; justify-content:center; }
+  .nl-form input{
+    flex:1; min-width:220px; background:transparent; border:1px solid rgba(245,239,229,.4);
+    padding:.9rem 1.1rem; color:var(--off-white); font-family:var(--sans); font-size:.92rem;
+  }
+  .nl-form input::placeholder{ color:rgba(245,239,229,.55); }
+  .nl-form input:focus{ outline:none; border-color:var(--dourado); }
+  .nl-msg{ margin-top:1rem; font-size:.85rem; color:var(--dourado); min-height:1.2em; }
+  .nl-demo-note{ margin-top:1.4rem; font-size:.76rem; color:rgba(245,239,229,.55); max-width:420px; margin-left:auto; margin-right:auto; }
+  .nl-view-link{
+    background:none; border:none; padding:0; font-family:var(--sans); font-size:.76rem;
+    color:var(--dourado); text-decoration:underline; cursor:pointer;
+  }
+
+  /* ================= CATÁLOGO (MODAL) ================= */
+  .catalog-overlay{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(58,23,8,.65);
+    display:flex; align-items:center; justify-content:center;
+    padding:4vh 5vw;
+    opacity:0; visibility:hidden;
+    transition:opacity .4s var(--ease), visibility 0s linear .4s;
+  }
+  .catalog-overlay.open{
+    opacity:1; visibility:visible;
+    transition:opacity .4s var(--ease), visibility 0s linear 0s;
+  }
+  .catalog-modal{
+    background:var(--off-white); max-width:760px; width:100%;
+    max-height:86vh; overflow-y:auto;
+    padding:3rem 2.6rem 2.6rem;
+    position:relative;
+    transform:translateY(24px); transition:transform .4s var(--ease);
+    box-shadow:0 30px 80px -20px rgba(58,23,8,.4);
+  }
+  .catalog-overlay.open .catalog-modal{ transform:translateY(0); }
+  .catalog-modal h2{ font-size:clamp(1.6rem,3.2vw,2.1rem); color:var(--marrom); margin-bottom:.6rem; }
+  .catalog-note{ font-size:.82rem; color:#8a7561; font-style:italic; margin-bottom:2rem; }
+  .catalog-close{
+    position:absolute; top:1.4rem; right:1.4rem;
+    background:none; border:1px solid var(--marrom); color:var(--marrom);
+    width:34px; height:34px; border-radius:50%; cursor:pointer;
+    font-size:.85rem; transition:.3s var(--ease);
+  }
+  .catalog-close:hover{ background:var(--marrom); color:var(--off-white); }
+  .catalog-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.6rem; }
+  .catalog-item .ph{ aspect-ratio:1/1; margin-bottom:.8rem; }
+  .catalog-item h4{ font-family:var(--serif); font-size:1rem; color:var(--marrom); margin-bottom:.25rem; }
+  .catalog-item p{ font-size:.83rem; color:#7a6a58; }
+  @media (max-width:640px){
+    .catalog-modal{ padding:2.4rem 1.4rem 2rem; }
+    .catalog-grid{ grid-template-columns:1fr 1fr; gap:1.1rem; }
+  }
+
+  /* ================= FOOTER ================= */  footer{ background:var(--marrom-escuro); color:rgba(245,239,229,.75); padding:5rem 0 2rem; }
+  .foot-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:3rem; margin-bottom:3.5rem; }
+  .foot-grid h4{ font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--dourado); margin-bottom:1.2rem; }
+  .foot-grid ul li{ margin-bottom:.65rem; font-size:.92rem; }
+  .foot-grid ul li a:hover{ color:var(--off-white); }
+  .foot-bottom{ border-top:1px solid rgba(245,239,229,.12); padding-top:1.6rem; text-align:center; font-size:.8rem; color:rgba(245,239,229,.45); }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width:980px){
+    .hero .ph{ width: 100%; }
+    .hero-overlay{ background: #185A2D; }
+    .hero{ flex-direction: column; justify-content: center; text-align: center; padding: 4rem 0; }
+    .hero-content{ padding-bottom: 0; }
+    .hero-text-panel{ margin: 0 auto; }
+    .hero-btns{ justify-content: center; }
+    .sobre .grid2{ grid-template-columns:1fr; gap:2.5rem; }
+    .cat-grid{ grid-template-columns:repeat(2,1fr); }
+    .prod-grid{ grid-template-columns:repeat(2,1fr); }
+    .visite-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .foot-grid > div:first-child{ grid-column:span 2; }
+  }
+  @media (max-width:640px){
+    nav.desktop-nav, .btn-nav-cta{ display:none; }
+    .hamburger{ display:flex; }
+    .hero-content{ padding-bottom:3.5rem; }
+    .hero-text-panel{ padding:1.4rem 1.3rem; border-left-width:3px; }
+    .cat-grid{ grid-template-columns:1fr 1fr; }
+    .prod-grid{ grid-template-columns:1fr; }
+    .insta-grid{ grid-template-columns:repeat(3,1fr); gap:.35rem; }
+    .foot-grid{ grid-template-columns:1fr; text-align:center; }
+    .foot-grid > div:first-child{ grid-column:span 1; }
+    .nl-form{ flex-direction:column; align-items:stretch; }
+    .contato-btns{ flex-direction:column; align-items:center; }
+    .contato-btns .btn{ width:100%; max-width:280px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  /* ---------- Cookie Banner ---------- */
+  @keyframes slideUp{ from{ transform:translateY(100%); } to{ transform:translateY(0); } }
+  .cookie-banner{
+    position:fixed; bottom:0; left:0; right:0; z-index:1000;
+    background:var(--marrom-escuro); color:var(--creme);
+    padding:1.2rem 2rem; box-shadow:0 -4px 20px rgba(0,0,0,0.3);
+    display:none; align-items:center; justify-content:center;
+    gap:1.5rem; font-size:.85rem; animation:slideUp .4s var(--ease);
+  }
+  .cookie-banner.active{ display:flex; }
+  .cookie-banner p{ margin:0; max-width:800px; text-align:center; opacity:.9; }
+  .cookie-banner a{ color:var(--dourado); text-decoration:underline; font-weight:500; }
+  .cookie-btns{ display:flex; gap:1rem; }
+  .cookie-btn{
+    padding:.5rem 1.2rem; font-size:.75rem; text-transform:uppercase;
+    letter-spacing:.05em; cursor:pointer; transition:var(--ease); border-radius:0;
+  }
+  .cookie-btn-accept{ background:var(--dourado); color:var(--marrom-escuro); border:none; font-weight:600; }
+  .cookie-btn-accept:hover{ background:var(--off-white); }
+  .cookie-btn-decline{ background:transparent; color:var(--creme); border:1px solid var(--creme); }
+  .cookie-btn-decline:hover{ background:rgba(245,239,225,.1); }
+  @media(max-width:768px){
+    .cookie-banner{ flex-direction:column; gap:1rem; text-align:center; padding:1.5rem; }
+    .cookie-btns{ justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="site-header">
+  <div class="wrap">
+    <a href="#topo" class="logo">
+      <img class="logo-icon-img" id="logoIconHeader" alt="Casa Dela Empório" src="assets/casadela-20260930/logo_icon_uri.99cc967a0f67.png" width="230" height="250" loading="eager" decoding="async">
+      <span class="logo-wordmark">Casa Dela <span class="script">Empório</span></span>
+    </a>
+    <nav class="desktop-nav">
+      <a href="#sobre">Sobre a Casa</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#visite">Visite a Casa</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#visite" class="btn-nav-cta">Como chegar</a>
+      <div class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <img class="logo-full-img mobile-logo" id="logoFullMobile" alt="Casa Dela Empório" src="assets/casadela-20260930/logo_full_uri.c758a001f31c.webp" width="798" height="795" loading="lazy" decoding="async">
+  <a href="#sobre">Sobre a Casa</a>
+  <a href="#produtos">Produtos</a>
+  <a href="#avaliacoes">Avaliações</a>
+  <a href="#visite">Visite a Casa</a>
+  <a href="#contato">Contato</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="topo">
+  <div class="ph has-photo" id="heroPh"><img class="ph-photo" src="assets/casadela-20260930/img20_hero_logo.bd1e0868bcd9.webp" alt="Logo Casa Dela Empório Emporio em relevo na parede verde" width="1025" height="1534" loading="eager" fetchpriority="high" decoding="async"></div>
+  <div class="hero-overlay"></div>
+  <div class="wrap hero-content">
+    <div class="hero-text-panel reveal">
+      <p class="hero-eyebrow">— SOBRE A CASA DELA EMPÓRIO</p>
+      <h1 class="reveal">
+        <span style="color: var(--creme);">Sabor, Saúde e Aconchego</span><br>
+        <span style="color: #E9C496;">em Cada Detalhe</span>
+      </h1>
+      <p class="hero-sub reveal">A Casa Dela Empório é um espaço acolhedor, onde cada produto é escolhido a dedo, priorizando a qualidade e o propósito.</p>
+      <div class="hero-btns reveal">
+        <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+        <a href="#visite" class="btn btn-outline">Como chegar</a>
+        <div class="status-pill" id="heroStatus">
+          <span class="dot" id="heroDot"></span>
+          <span id="heroStatusText">Carregando horário…</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOBRE ================= -->
+<section class="sobre" id="sobre">
+  <div class="wrap grid2">
+    <div class="ph reveal has-photo" id="sobrePh"><img class="ph-photo" src="assets/casadela-20260930/img40_fundadoras.898cb5d55dd3.jpg" alt="Deise e Paula, fundadoras da Casa Dela Empório, em mesa com produtos naturais" width="864" height="1296" loading="lazy" decoding="async"></div>
+    <div class="reveal">
+      <p class="eyebrow">SOBRE A CASA</p>
+      <h2>Escolhas especiais para momentos que ficam.</h2>
+      <p>A Casa Dela Empório nasceu da amizade entre Deise e Paula e do desejo de criar um espaço acolhedor, onde qualidade, cuidado e bom atendimento estivessem presentes em cada detalhe.</p>
+      <p>Cada produto é selecionado com atenção. Valorizamos a procedência, conhecemos nossos fornecedores e experimentamos cada novidade antes que ela chegue às nossas prateleiras.</p>
+      <p>Mais do que oferecer produtos especiais, queremos proporcionar uma experiência agradável e próxima, fazendo com que cada pessoa se sinta verdadeiramente em casa.</p>
+      <p class="script" style="margin-top:1.5rem;">Deise & Paula, fundadoras</p>
+    </div>
+  </div>
+</section>
+
+<div class="sprig reveal">
+  <!-- broto de três folhas + caule, inspirado no ícone da logomarca da Casa Dela Empório -->
+  <svg viewBox="0 0 90 90" fill="none">
+    <path d="M45 88 L45 40" stroke="#B99A68" stroke-width="2"/>
+    <path class="leaf" d="M45 40 C 40 28, 41 14, 45 4 C 49 14, 50 28, 45 40 Z" fill="#5E6247" opacity=".8"/>
+    <path class="leaf" d="M45 42 C 32 40, 20 32, 12 18 C 27 18, 40 26, 45 42 Z" fill="#5E6247" opacity=".55"/>
+    <path class="leaf" d="M45 42 C 58 40, 70 32, 78 18 C 63 18, 50 26, 45 42 Z" fill="#5E6247" opacity=".55"/>
+  </svg>
+</div>
+
+<!-- ================= PRODUTOS (CATEGORIAS) ================= -->
+<section class="produtos" id="produtos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--verde)">Sabores da Casa</p>
+      <h2>Categorias</h2>
+      <p>Produtos naturais, qualidade e sabor para fazer parte da sua rotina.</p>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- ================= ESCOLHAS DA CASA ================= -->
+<section class="escolhas" id="escolhas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Escolhas da Casa</p>
+      <h2>Produtos que você encontra na Casa</h2>
+      <p>Uma pequena amostra do que faz parte do dia a dia da Casa Dela Empório.</p>
+    </div>
+    <div class="prod-grid" id="prodGrid"></div>
+  </div>
+</section>
+
+<!-- ================= AVALIAÇÕES (GOOGLE) ================= -->
+<section class="avaliacoes" id="avaliacoes">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--verde)">O que dizem sobre a Casa</p>
+      <h2>Avaliações</h2>
+      <div class="rating-summary">
+        <span class="rating-stars">★★★★★</span>
+        <span class="rating-number">5.0</span>
+        <span class="rating-count">· 20 avaliações no Google</span>
+      </div>
+    </div>
+    <div class="avaliacoes-grid reveal">
+      <div class="avaliacao-card">
+        <p>"Atendimento acolhedor e produtos de ótima qualidade — indicaram sementes de abóbora que fizeram toda a diferença."</p>
+      </div>
+      <div class="avaliacao-card">
+        <p>"Produtos de qualidade, ambiente agradável e atendimento atencioso, cheio de conhecimento."</p>
+      </div>
+      <div class="avaliacao-card">
+        <p>"Produtos de excelente qualidade e atendimento impecável."</p>
+      </div>
+      <div class="avaliacao-card">
+        <p>"Ótima variedade e preços justos, ambiente aconchegante — e sempre um chá delicioso esperando pelos clientes."</p>
+      </div>
+      <div class="avaliacao-card">
+        <p>"Produtos frescos e variados, com atendimento exemplar."</p>
+      </div>
+    </div>
+    <div class="avaliacoes-cta reveal">
+      <a href="https://www.google.com/maps/place/?q=place_id:ChIJRWDstHJXzpQRFk6482kuAJ8" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:var(--verde); color:var(--marrom)">Ver todas as avaliações no Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIÊNCIA (BANNER) ================= -->
+<section class="experiencia">
+  <div class="ph has-photo" id="expPh"><img class="ph-photo" src="assets/casadela-20260930/img1_sign.8014799e8f5f.webp" alt="Fachada iluminada da Casa Dela Empório Emporio" width="1730" height="909" loading="lazy" decoding="async"></div>
+  <div class="hero-overlay"></div>
+  <div class="exp-content reveal">
+    <h2>Qualidade que você sente.<br>Sabor que você leva para casa.</h2>
+    <p class="exp-quote-panel">Venha conhecer a Casa Dela Empório e descubra uma seleção especial de produtos naturais e deliciosos.</p>
+    <a href="#visite" class="btn btn-primary">Venha conhecer</a>
+  </div>
+</section>
+
+<!-- ================= VISITE A CASA ================= -->
+<section class="visite" id="visite">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--dourado)">Venha conhecer a Casa Dela Empório</p>
+      <h2>Visite a Casa</h2>
+      <p>A Casa Dela Empório é um espaço acolhedor, onde você encontra produtos naturais de qualidade e sabor. Venha conferir!!</p>
+    </div>
+    <div class="visite-grid">
+      <div class="reveal">
+        <div class="ph fachada-photo has-photo" id="fachadaPh"><img class="ph-photo" src="assets/casadela-20260930/img39_fachada_ia.48fd94936d66.jpg" alt="Fachada da Casa Dela Empório" width="1125" height="900" loading="lazy" decoding="async"></div>
+        <div class="map-frame">
+          <iframe src="https://www.google.com/maps?q=P%C3%A1tio+Mall%2C+R.+Heitor+dos+Prazeres%2C+0%2C+Loja+09%2C+Vila+S%C3%B4nia%2C+S%C3%A3o+Paulo+-+SP%2C+05522-000&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa - Pátio Mall, Vila Sônia, São Paulo"></iframe>
+        </div>
+        <div class="addr-line">Pátio Mall — R. Heitor dos Prazeres, 0, Loja 09 — Vila Sônia, São Paulo - SP, 05522-000</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=P%C3%A1tio+Mall%2C+R.+Heitor+dos+Prazeres%2C+0%2C+Loja+09%2C+Vila+S%C3%B4nia%2C+S%C3%A3o+Paulo+-+SP%2C+05522-000" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:var(--dourado); color:var(--off-white)">Como chegar</a>
+      </div>
+      <div class="hours-card reveal">
+        <h3>Horário de funcionamento</h3>
+        <div class="hours-list" id="hoursList"></div>
+        <div class="status-pill dark" id="cardStatus">
+          <span class="dot" id="cardDot"></span>
+          <span id="cardStatusText">Carregando horário…</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section class="contato" id="contato">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Fale com a Casa</p>
+      <h2>Fale com a Casa</h2>
+      <p>Tem alguma dúvida? Quer saber mais sobre nossos produtos? Entre em contato com a gente.</p>
+    </div>
+    <div class="contato-btns reveal">
+      <a href="mailto:atendimento@casadelaemporio.com.br" target="_blank" rel="noopener" class="btn btn-dark">E-mail</a>
+      <a href="https://wa.me/5511940322506" target="_blank" rel="noopener" class="btn btn-dark">WhatsApp</a>
+      <a href="https://www.instagram.com/casadela.emporio/" target="_blank" rel="noopener" class="btn btn-dark">Instagram</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=P%C3%A1tio+Mall%2C+R.+Heitor+dos+Prazeres%2C+0%2C+Loja+09%2C+Vila+S%C3%B4nia%2C+S%C3%A3o+Paulo+-+SP%2C+05522-000" target="_blank" rel="noopener" class="btn btn-dark">Como chegar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSTAGRAM ================= -->
+<section class="insta">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="color:var(--verde)">Da Casa para o seu dia</p>
+      <h2>Instagram</h2>
+      <p>Conheça um pouco mais da nossa rotina, novidades e produtos.</p>
+    </div>
+    <div class="insta-grid reveal" id="instaGrid"></div>
+    <p class="insta-handle"><a href="https://www.instagram.com/casadela.emporio/" target="_blank" rel="noopener">@casadela.emporio</a></p>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="newsletter">
+  <div class="wrap">
+    <h2 class="reveal">Entre para a Casa</h2>
+    <p class="reveal">Receba novidades, produtos especiais e novidades da Casa Dela Empório.</p>
+    <form class="nl-form reveal" id="nlForm">
+      <input type="email" placeholder="Seu melhor e-mail" required>
+      <button type="submit" class="btn btn-primary">Quero fazer parte</button>
+    </form>
+    <p class="nl-msg" id="nlMsg"></p>
+
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="logo-full-img footer-logo" id="logoFullFooter" alt="Casa Dela Empório" src="assets/casadela-20260930/logo_full_uri.c758a001f31c.webp" width="798" height="795" loading="lazy" decoding="async">
+        <p style="max-width:320px; font-size:.9rem;">A Casa Dela Empório é um espaço acolhedor, onde você encontra produtos naturais de qualidade e sabor.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#topo">Início</a></li>
+          <li><a href="#sobre">Sobre a Casa</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#visite">Visite a Casa</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visite-nos</h4>
+        <ul>
+          <li>Pátio Mall — R. Heitor dos Prazeres, 0, Loja 09 — Vila Sônia, São Paulo - SP, 05522-000</li>
+        </ul>
+        <h4 style="margin-top:1.6rem;">Funcionamento</h4>
+        <ul id="footHours"></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© <span id="year"></span> Casa Dela Empório. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<!-- ================= MODAL CATÁLOGO POR CATEGORIA ================= -->
+<div class="catalog-overlay" id="catalogOverlay">
+  <div class="catalog-modal" role="dialog" aria-modal="true" aria-labelledby="catalogTitle">
+    <button type="button" class="catalog-close" id="catalogClose" aria-label="Fechar catálogo">✕</button>
+    <p class="eyebrow" style="color:var(--verde)">Sabores da Casa</p>
+    <h2 id="catalogTitle"></h2>
+    <p class="catalog-note">Produtos disponíveis nesta categoria.</p>
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>Usamos cookies para melhorar a sua experiência no site da Casa Dela Empório. <a href="#">Saiba mais</a></p>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Recusar</button>
+    <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Aceitar</button>
+  </div>
+</div>
+
+<script>
+/* ============ SUPABASE (catálogo de produtos) ============
+   Substitua pelos dados do SEU projeto Supabase (Project Settings > API).
+   A "anon key" é pública por natureza — o acesso de escrita é bloqueado
+   no banco por políticas de segurança (RLS), não por este arquivo. */
+const SUPABASE_URL = "https://bbvtdcwxiocwitycjqfp.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_6uqmf8oCxymk0v77qA4Yag_pUZEXbt5";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ============ LOGO ASSETS (arquivos externos com nomes versionados) ============ */
+const LOGO_ICON_URI = "assets/casadela-20260930/logo_icon_uri.99cc967a0f67.png";
+const LOGO_FULL_URI = "assets/casadela-20260930/logo_full_uri.c758a001f31c.webp";
+document.querySelectorAll('.logo-icon-img').forEach(img => img.src = LOGO_ICON_URI);
+document.querySelectorAll('.logo-full-img').forEach(img => img.src = LOGO_FULL_URI);
+const favicon = document.getElementById('favicon');
+if(favicon) favicon.href = LOGO_ICON_URI;
+
+/* ============ ÍCONES ILUSTRATIVOS (imagens fictícias em SVG, até chegarem as fotos reais) ============ */
+const ICONS = {
+  leaf: `<path d="M24 40C13 38 9 28 9 18c11 0 20 4 22 15 1-11 10-15 22-15 0 10-4 20-15 22-2 4-6 7-12 7-2-2-2-5-2-7z"/><path d="M24 40V22"/>`,
+  sprout: `<path d="M24 40V16"/><path d="M24 16c-2-6-8-9-14-9 0 8 6 13 14 13z"/><path d="M24 16c2-6 8-9 14-9 0 8-6 13-14 13z"/><path d="M24 16c0-6 0-10 0-14"/>`,
+  coffee: `<path d="M12 18h20v11a10 10 0 0 1-20 0V18z"/><path d="M32 20h3a4 4 0 0 1 0 8h-3"/><path d="M17 12c0-2 2-2 2-4M23 12c0-2 2-2 2-4M29 12c0-2 2-2 2-4"/><path d="M9 41h26"/>`,
+  tea: `<path d="M10 20h22l-2 12a8 8 0 0 1-8 7h-2a8 8 0 0 1-8-7l-2-12z"/><path d="M32 22h3a4 4 0 0 1 0 7h-2"/><path d="M17 14c0-2 2-2 2-4M25 14c0-2 2-2 2-4"/><path d="M8 41h28"/>`,
+  honey: `<path d="M17 10h14v6l3 3v18a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3V19l3-3v-6z"/><path d="M14 25h20M14 31h20"/><path d="M20 10V6h8v4"/>`,
+  oil: `<path d="M21 8h6v6l4 4v19a3 3 0 0 1-3 3H20a3 3 0 0 1-3-3V18l4-4V8z"/><path d="M19 6h10"/><path d="M17 24h14"/>`,
+  grain: `<path d="M15 16c0-4 4-6 9-6s9 2 9 6l3 20a3 3 0 0 1-3 3.4c-6-1-12-1-18 0A3 3 0 0 1 12 36l3-20z"/><path d="M15 16h18"/>`,
+  nuts: `<circle cx="16" cy="26" r="7"/><circle cx="30" cy="24" r="8"/><circle cx="23" cy="34" r="6"/>`,
+  jam: `<path d="M15 12h18v5H15z"/><path d="M14 17h20v20a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3V17z"/><path d="M18 25h12"/>`,
+  cookie: `<circle cx="24" cy="24" r="15"/><circle cx="19" cy="19" r="1.6" fill="currentColor" stroke="none"/><circle cx="29" cy="20" r="1.6" fill="currentColor" stroke="none"/><circle cx="24" cy="28" r="1.6" fill="currentColor" stroke="none"/><circle cx="30" cy="29" r="1.6" fill="currentColor" stroke="none"/>`,
+  bread: `<path d="M9 26c0-9 6-16 15-16s15 7 15 16c0 6-4 9-15 9S9 32 9 26z"/><path d="M17 18c1 4 1 8 0 12M24 15c1 5 1 9 0 14M31 18c1 4 1 8 0 12"/>`,
+  cheese: `<path d="M6 34 24 12l18 22z"/><circle cx="20" cy="28" r="1.6" fill="currentColor" stroke="none"/><circle cx="28" cy="27" r="1.6" fill="currentColor" stroke="none"/><circle cx="24" cy="32" r="1.6" fill="currentColor" stroke="none"/>`,
+  chocolate: `<rect x="8" y="14" width="32" height="20" rx="2"/><path d="M8 24h32M18 14v20M28 14v20"/>`,
+  sweet: `<circle cx="24" cy="24" r="9"/><path d="M15 24c-4-2-6 0-6 3M33 24c4-2 6 0 6 3M24 15c-2-4 0-6 3-6M24 33c-2 4 0 6 3 6"/>`,
+  cake: `<path d="M10 24h28v13a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V24z"/><path d="M10 24l4-8h20l4 8"/><path d="M22 12V7M22 7c0-2 2-2 2-4"/>`,
+  candle: `<rect x="19" y="18" width="10" height="22" rx="1"/><path d="M24 18v-6"/><path d="M24 8c2 2 2 4 0 6-2-2-2-4 0-6z" fill="currentColor" stroke="none"/>`,
+  soap: `<rect x="10" y="17" width="28" height="16" rx="6"/><path d="M16 17v-3a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v3"/>`,
+  diffuser: `<path d="M18 26h12v11a2 2 0 0 1-2 2H20a2 2 0 0 1-2-2V26z"/><path d="M20 26v-9a4 4 0 0 1 8 0v9"/><path d="M24 17V7M20 10l-3-3M28 10l3-3"/>`,
+  gift: `<rect x="9" y="20" width="30" height="19" rx="1"/><path d="M9 27h30"/><path d="M24 20v19"/><path d="M24 20c-3-7-9-9-9-4 0 3 4 4 9 4zM24 20c3-7 9-9 9-4 0 3-4 4-9 4z"/>`,
+  basket: `<path d="M10 20h28l-3 17a3 3 0 0 1-3 3H16a3 3 0 0 1-3-3l-3-17z"/><path d="M10 20a14 8 0 0 1 28 0"/><path d="M18 25l1 9M30 25l-1 9M24 25v9"/>`,
+  camera: `<rect x="7" y="13" width="34" height="26" rx="4"/><circle cx="24" cy="26" r="7"/><path d="M17 13l2-3h10l2 3"/>`,
+  table: `<ellipse cx="18" cy="18" rx="7" ry="4"/><path d="M11 18v6M25 18v6M11 24h14"/><path d="M32 12v20"/><path d="M28 16h8"/><path d="M24 40l-4-8h8z"/>`,
+  house: `<path d="M8 22 24 9l16 13"/><path d="M12 20v17a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V20"/><path d="M20 39V27h8v12"/>`,
+};
+
+function iconSvg(key){
+  const paths = ICONS[key] || ICONS.leaf;
+  return `<svg viewBox="0 0 48 48" fill="none" stroke="#F5EFE5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
+}
+
+/* Gera o markup de um bloco de "imagem" ilustrativa (ícone + legenda discreta) */
+function phBlock(key, label){
+  return `<div class="ph-icon">${iconSvg(key)}</div><div class="ph-caption">${label || 'Imagem ilustrativa'}</div>`;
+}
+
+/* Detecta o ícone mais adequado a partir do nome do item/categoria */
+function guessIcon(name){
+  const s = name.toLowerCase();
+  if(s.includes('café') || s.includes('cafe')) return 'coffee';
+  if(s.includes('chá') || s.includes('cha ')) return 'tea';
+  if(s.includes('mel')) return 'honey';
+  if(s.includes('azeite')) return 'oil';
+  if(s.includes('farinha')) return 'grain';
+  if(s.includes('castanha') || s.includes('granola') || s.includes('nuts')) return 'nuts';
+  if(s.includes('geleia')) return 'jam';
+  if(s.includes('biscoito') || s.includes('cookie')) return 'cookie';
+  if(s.includes('pão') || s.includes('pao')) return 'bread';
+  if(s.includes('queijo')) return 'cheese';
+  if(s.includes('chocolate')) return 'chocolate';
+  if(s.includes('bolo')) return 'cake';
+  if(s.includes('doce') || s.includes('brigadeiro')) return 'sweet';
+  if(s.includes('vela')) return 'candle';
+  if(s.includes('sabonete')) return 'soap';
+  if(s.includes('difusor')) return 'diffuser';
+  if(s.includes('cesta')) return 'basket';
+  if(s.includes('presente') || s.includes('kit') || s.includes('combo') || s.includes('caixa')) return 'gift';
+  if(s.includes('natural')) return 'leaf';
+  if(s.includes('artesanal') || s.includes('casa')) return 'bread';
+  return 'leaf';
+}
+
+/* Popula os placeholders estáticos (hero, sobre, banner) com ícone ilustrativo */
+function fillStaticPh(id, key, label){
+  const el = document.getElementById(id);
+  if(el && !el.querySelector('img')) el.innerHTML = phBlock(key, label);
+}
+fillStaticPh('heroPh', 'table', 'Mesa da Casa Dela Empório (ilustrativa)');
+fillStaticPh('sobrePh', 'house', 'Ambiente da Casa (ilustrativa)');
+fillStaticPh('expPh', 'coffee', 'Café & botânicos (ilustrativa)');
+
+const PHOTOS = {
+  img40_fundadoras: "assets/casadela-20260930/img40_fundadoras.898cb5d55dd3.jpg",
+  img39_fachada_ia: "assets/casadela-20260930/img39_fachada_ia.48fd94936d66.jpg",
+  img37_ervas: "assets/casadela-20260930/img37_ervas.ae71f5fa7032.jpg",
+  img38_cha_pour: "assets/casadela-20260930/img38_cha_pour.f8efb18384b2.jpg",
+  img35_doce_fruta: "assets/casadela-20260930/img35_doce_fruta.4822a5645393.jpg",
+  img36_banana_passa: "assets/casadela-20260930/img36_banana_passa.4149668d9617.jpg",
+  img29_nuno: "assets/casadela-20260930/img29_nuno.ce16fa819219.jpg",
+  img30_incenso: "assets/casadela-20260930/img30_incenso.872f27ea83b9.jpg",
+  img31_pasta_tomate: "assets/casadela-20260930/img31_pasta_tomate.68c2978423d1.jpg",
+  img32_pasta_alho: "assets/casadela-20260930/img32_pasta_alho.dbe7080fed24.jpg",
+  img33_cafe_tulha: "assets/casadela-20260930/img33_cafe_tulha.a6c1b85863e2.jpg",
+  img34_azeite_shitake: "assets/casadela-20260930/img34_azeite_shitake.0d6e6dcdd8b9.jpg",
+  img28_barra_pistache: "assets/casadela-20260930/img28_barra_pistache.bab767d9eaf2.jpg",
+  img27_bombom: "assets/casadela-20260930/img27_bombom.d09889800b6d.jpg",
+  img26_cesta: "assets/casadela-20260930/img26_cesta.620b07b34382.jpg",
+  img23_farinha: "assets/casadela-20260930/img23_farinha.be4c1193f651.webp",
+  img24_mel: "assets/casadela-20260930/img24_mel.ccec5ea8a23c.webp",
+  img25_castanhas: "assets/casadela-20260930/img25_castanhas.337bdb28b217.webp",
+  img20_hero_logo: "assets/casadela-20260930/img20_hero_logo.bd1e0868bcd9.webp",
+  img21_equipe_olhando: "assets/casadela-20260930/img21_equipe_olhando.7b23c82c9b5c.jpg",
+  img12_equipe4: "assets/casadela-20260930/img12_equipe4.068ff3218f90.jpg",
+  img13_canela: "assets/casadela-20260930/img13_canela.2f287a02f108.jpg",
+  img14_cha: "assets/casadela-20260930/img14_cha.e949d725144f.jpg",
+  img15_bolo: "assets/casadela-20260930/img15_bolo.183b80bf5e29.jpg",
+  img16_prateleira: "assets/casadela-20260930/img16_prateleira.d07e893074bd.jpg",
+  img17_barras: "assets/casadela-20260930/img17_barras.22eb40799b5e.jpg",
+  img18_fachada: "assets/casadela-20260930/img18_fachada.602ea0001dae.jpg",
+  img1_sign: 'assets/casadela-20260930/img1_sign.8014799e8f5f.webp',
+  img3_doces: "assets/casadela-20260930/img3_doces.2fffb14aeeae.jpg",
+  img4_balloons: "assets/casadela-20260930/img4_balloons.6fb510bfc308.jpg",
+  img5_difusor: 'assets/casadela-20260930/img5_difusor.b2b419212a74.webp',
+  img7_granola: 'assets/casadela-20260930/img7_granola.56814e271ce7.webp',
+};
+
+/* Substitui um placeholder estatico por foto real quando disponivel */
+function fillStaticPhoto(id, photoKey, alt){
+  const el = document.getElementById(id);
+  if(!el || el.querySelector('img')) return;
+  el.classList.add('has-photo');
+  el.innerHTML = '<img class="ph-photo" src="' + PHOTOS[photoKey] + '" alt="' + alt + '">';
+}
+fillStaticPhoto('heroPh', 'img20_hero_logo', 'Logo Casa Dela Empório Emporio em relevo na parede verde');
+fillStaticPhoto('sobrePh', 'img40_fundadoras', 'Deise e Paula, fundadoras da Casa Dela Empório, em mesa com produtos naturais');
+fillStaticPhoto('fachadaPh', 'img39_fachada_ia', 'Fachada da Casa Dela Empório');
+fillStaticPhoto('expPh', 'img1_sign', 'Fachada iluminada da Casa Dela Empório Emporio');
+
+
+/* ============ DATA ============ */
+const categorias = [
+  {n:"Produtos Naturais", d:"Selecionados com cuidado para o dia a dia."},
+  {n:"Cafés e Chás", d:"Blends e ervas para todos os momentos."},
+  {n:"Produtos Artesanais", d:"Feitos à mão, com atenção aos detalhes."},
+  {n:"Doces e Delícias", d:"Sabores especiais para adoçar a rotina."},
+  {n:"Produtos para Casa", d:"Itens que trazem aconchego ao lar."},
+  {n:"Bem-estar", d:"Cuidado e equilíbrio para o corpo e a mente."},
+];
+
+// index 0 = domingo ... 6 = sábado
+const horarios = [
+  {label:"Domingo", open:null, close:null, note:"Fechada"},
+  {label:"Segunda-feira", open:"08:00", close:"21:00"},
+  {label:"Terça-feira", open:"08:00", close:"21:00"},
+  {label:"Quarta-feira", open:"08:00", close:"21:00"},
+  {label:"Quinta-feira", open:"08:00", close:"21:00"},
+  {label:"Sexta-feira", open:"08:00", close:"21:00"},
+  {label:"Sábado", open:"08:00", close:"19:00"},
+];
+
+/* Retorna a foto real (se existir) ou o ícone ilustrativo como alternativa
+   — usada pelos cards ESTÁTICOS de categoria (fotos ilustrativas fixas) */
+function phOrPhoto(photoKey, iconKey, alt){
+  if(photoKey && PHOTOS[photoKey]){
+    return `<img class="ph-photo" src="${PHOTOS[photoKey]}" alt="${alt}" loading="lazy" decoding="async">`;
+  }
+  return phBlock(iconKey, 'Imagem ilustrativa');
+}
+
+/* Igual à anterior, mas para fotos REAIS de produtos vindas do Supabase
+   (image_url), com fallback para o ícone ilustrativo caso falte foto */
+function phOrProductPhoto(imageUrl, iconKey, alt){
+  if(imageUrl){
+    return `<img class="ph-photo" src="${imageUrl}" alt="${alt}" loading="lazy" decoding="async">`;
+  }
+  return phBlock(iconKey, 'Imagem ilustrativa');
+}
+
+/* ============ RENDER CARDS ============ */
+const catGrid = document.getElementById('catGrid');
+const catIconMap = {
+  "Produtos Naturais":"leaf", "Cafés e Chás":"coffee", "Produtos Artesanais":"bread",
+  "Doces e Delícias":"sweet", "Produtos para Casa":"candle", "Bem-estar":"diffuser"
+};
+const catPhotoMap = {
+  "Produtos Naturais":"img16_prateleira",
+  "Cafés e Chás":"img14_cha",
+  "Produtos Artesanais":"img7_granola",
+  "Doces e Delícias":"img3_doces",
+  "Produtos para Casa":"img5_difusor",
+  "Bem-estar":"img30_incenso",
+};
+categorias.forEach(c=>{
+  const hasPhoto = !!catPhotoMap[c.n];
+  catGrid.insertAdjacentHTML('beforeend', `
+    <div class="card reveal">
+      <div class="ph${hasPhoto?' has-photo':''}">${phOrPhoto(catPhotoMap[c.n], catIconMap[c.n] || guessIcon(c.n), c.n)}</div>
+      <div class="card-body">
+        <h3>${c.n}</h3>
+        <p>${c.d}</p>
+        <button type="button" class="card-link" data-cat="${c.n}">Conhecer</button>
+      </div>
+    </div>`);
+});
+catGrid.addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-cat]');
+  if(btn) openCatalog(btn.dataset.cat);
+});
+
+/* ============ MODAL CATÁLOGO POR CATEGORIA ============ */
+const catalogOverlay = document.getElementById('catalogOverlay');
+const catalogGrid = document.getElementById('catalogGrid');
+const catalogTitle = document.getElementById('catalogTitle');
+
+/* Produtos cadastrados no painel /admin/ — carregados do Supabase */
+let allProducts = [];
+
+function openCatalog(categoria){
+  const itens = allProducts.filter(p => p.category === categoria);
+  catalogTitle.textContent = categoria;
+  if(itens.length === 0){
+    catalogGrid.innerHTML = `<p style="grid-column:1/-1;color:#7a6a58;font-size:.92rem;">Em breve novidades nesta categoria.</p>`;
+  } else {
+    catalogGrid.innerHTML = itens.map(item => `
+      <div class="catalog-item">
+        <div class="ph${item.image_url?' has-photo':''}">${phOrProductPhoto(item.image_url, guessIcon(item.name), item.name)}</div>
+        <h4>${item.name}</h4>
+        <p>${item.description}</p>
+      </div>`).join('');
+  }
+  catalogOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCatalog(){
+  catalogOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('catalogClose').addEventListener('click', closeCatalog);
+catalogOverlay.addEventListener('click', (e)=>{ if(e.target === catalogOverlay) closeCatalog(); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeCatalog(); });
+
+const prodGrid = document.getElementById('prodGrid');
+const escolhasSection = document.getElementById('escolhas');
+
+/* Renderiza a vitrine "Escolhas da Casa" com os produtos mais recentes
+   cadastrados no painel administrativo (até 6 itens). */
+function renderFeatured(produtos){
+  const destaque = produtos.slice(0, 6);
+  if(destaque.length === 0){
+    if(escolhasSection) escolhasSection.style.display = 'none';
+    return;
+  }
+  if(escolhasSection) escolhasSection.style.display = '';
+  prodGrid.innerHTML = destaque.map(p => `
+    <div class="prod-card reveal">
+      <div class="ph${p.image_url?' has-photo':''}">${phOrProductPhoto(p.image_url, guessIcon(p.name), p.name)}</div>
+      <h3>${p.name}</h3>
+      <p>${p.description}</p>
+    </div>`).join('');
+  prodGrid.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+/* Busca os produtos cadastrados no painel (/admin/) e alimenta o site */
+async function loadProducts(){
+  const { data, error } = await supabaseClient
+    .from('products')
+    .select('*')
+    .order('created_at', { ascending:false });
+  if(error){
+    console.error('Erro ao carregar produtos:', error.message);
+    return;
+  }
+  allProducts = data || [];
+  renderFeatured(allProducts);
+}
+loadProducts();
+
+const instaGrid = document.getElementById('instaGrid');
+const instaPhotos = ['img18_fachada','img15_bolo','img17_barras','img4_balloons','img13_canela'];
+instaPhotos.forEach(key=>{
+  instaGrid.insertAdjacentHTML('beforeend', `<a href="https://www.instagram.com/casadela.emporio/" target="_blank" rel="noopener" class="ph has-photo" style="text-decoration:none;"><img class="ph-photo" src="${PHOTOS[key]}" alt="Foto da Casa Dela Empório no Instagram" loading="lazy" decoding="async"></a>`);
+});
+
+/* ============ HORÁRIOS: render lists ============ */
+function renderHoursList(container, currentIdx){
+  container.innerHTML = '';
+  horarios.slice(1).concat(horarios[0]).forEach(h=>{
+    const idx = horarios.indexOf(h);
+    const isToday = idx === currentIdx;
+    const isUnset = !h.open;
+    const text = h.open ? `${h.open} - ${h.close}` : (h.note || 'Fechada');
+    container.insertAdjacentHTML('beforeend', `
+      <div class="hours-row ${isToday?'today':''} ${isUnset?'unset':''}">
+        <span>${h.label}</span><span>${text}</span>
+      </div>`);
+  });
+}
+
+function renderFootHours(){
+  const foot = document.getElementById('footHours');
+  horarios.slice(1).concat(horarios[0]).forEach(h=>{
+    const text = h.open ? `${h.open} - ${h.close}` : (h.note || 'Fechada');
+    foot.insertAdjacentHTML('beforeend', `<li>${h.label}: ${text}</li>`);
+  });
+}
+renderFootHours();
+
+/* ============ STATUS ABERTO/FECHADO (America/Sao_Paulo) ============ */
+function getSaoPauloNow(){
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone:'America/Sao_Paulo', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false
+  }).formatToParts(now);
+  const map = {};
+  parts.forEach(p=> map[p.type]=p.value);
+  const weekdayMap = {Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6};
+  const dayIdx = weekdayMap[map.weekday];
+  const hour = parseInt(map.hour,10);
+  const minute = parseInt(map.minute,10);
+  return { dayIdx, minutes: hour*60+minute };
+}
+
+function toMinutes(str){
+  const [h,m] = str.split(':').map(Number);
+  return h*60+m;
+}
+
+function computeStatus(){
+  const { dayIdx, minutes } = getSaoPauloNow();
+  const today = horarios[dayIdx];
+
+  if(!today.open){
+    return { open:false, dayIdx, label: dayIdx===0 ? 'Fechada hoje' : (today.note || 'Fechada hoje') };
+  }
+  const openMin = toMinutes(today.open);
+  const closeMin = toMinutes(today.close);
+  const isOpen = minutes >= openMin && minutes < closeMin;
+  return {
+    open: isOpen,
+    dayIdx,
+    label: isOpen ? `Aberta agora: ${today.open} - ${today.close}` : 'Fechada no momento'
+  };
+}
+
+function applyStatus(){
+  const status = computeStatus();
+
+  renderHoursList(document.getElementById('hoursList'), status.dayIdx);
+
+  const heroDot = document.getElementById('heroDot');
+  const heroText = document.getElementById('heroStatusText');
+  const cardDot = document.getElementById('cardDot');
+  const cardText = document.getElementById('cardStatusText');
+
+  [heroDot, cardDot].forEach(d=>{
+    d.classList.toggle('open', status.open);
+    d.classList.toggle('closed', !status.open);
+  });
+  heroText.textContent = status.label;
+  cardText.textContent = status.label;
+}
+applyStatus();
+setInterval(applyStatus, 60000);
+
+/* ============ HEADER SCROLL ============ */
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+/* ============ MOBILE MENU ============ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', ()=>{
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=>{
+  hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+}));
+
+/* ============ REVEAL ON SCROLL ============ */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold:.15 });
+document.querySelectorAll('.reveal, .sprig').forEach(el=> io.observe(el));
+
+/* ============ NEWSLETTER (demonstração local — salva no navegador, não é um banco real) ============ */
+const NL_KEY = 'casadela_newsletter_demo';
+function getEmails(){
+  try{ return JSON.parse(localStorage.getItem(NL_KEY)) || []; } catch(e){ return []; }
+}
+function saveEmail(email){
+  const emails = getEmails();
+  if(!emails.includes(email)) emails.push(email);
+  localStorage.setItem(NL_KEY, JSON.stringify(emails));
+  return emails.length;
+}
+document.getElementById('nlForm').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const input = e.target.querySelector('input[type="email"]');
+  const email = input.value.trim();
+  if(!email) return;
+  const total = saveEmail(email);
+  document.getElementById('nlMsg').textContent = 'Obrigada! Em breve você recebe novidades da Casa Dela Empório.';
+  e.target.reset();
+});
+
+document.getElementById('sugForm').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value.trim();
+  const sug = e.target.querySelector('input[type="text"]').value.trim();
+  if(!email || !sug) return;
+
+  const subject = encodeURIComponent('Sugestão para a Casa Dela Empório');
+  const body = encodeURIComponent(`E-mail: ${email}\n\nSugestão: ${sug}`);
+  window.location.href = `mailto:atendimento@casadelaemporio.com.br?subject=${subject}&body=${body}`;
+
+  document.getElementById('sugMsg').textContent = 'Obrigada pela sua sugestão!';
+  e.target.reset();
+});
+
+/* ============ ANO NO FOOTER ============ */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Cookie Banner Logic ---------- */
+  const cookieBanner = document.getElementById('cookieBanner');
+  const acceptBtn = document.getElementById('cookieAccept');
+  const declineBtn = document.getElementById('cookieDecline');
+
+  if (!localStorage.getItem('casa_dela_cookies')) {
+    cookieBanner.classList.add('active');
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('casa_dela_cookies', 'accepted');
+    cookieBanner.classList.remove('active');
+  });
+
+  declineBtn.addEventListener('click', () => {
+    localStorage.setItem('casa_dela_cookies', 'declined');
+    cookieBanner.classList.remove('active');
+  });
+</script>
+</body>
+</html>
