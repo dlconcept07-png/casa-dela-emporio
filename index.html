@@ -300,6 +300,36 @@
   .contato .section-head{ margin-bottom:2.6rem; }
   .contato-btns{ display:flex; justify-content:center; gap:1.1rem; flex-wrap:wrap; }
 
+  /* ================= WHATSAPP FLUTUANTE ================= */
+  .whatsapp-float{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    box-shadow:0 10px 28px rgba(0,0,0,.22);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .whatsapp-float:hover{
+    transform:translateY(-3px) scale(1.04);
+    box-shadow:0 14px 32px rgba(0,0,0,.28);
+  }
+  .whatsapp-float svg{
+    width:30px;
+    height:30px;
+    fill:none;
+    stroke:#fff;
+    stroke-width:2.2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
   /* ================= INSTAGRAM ================= */
   .insta{ padding:7rem 0; background:var(--off-white); }
   .insta-grid{
@@ -377,6 +407,13 @@
     .nl-form{ flex-direction:column; align-items:stretch; }
     .contato-btns{ flex-direction:column; align-items:center; }
     .contato-btns .btn{ width:100%; max-width:280px; }
+    .whatsapp-float{
+      right:16px;
+      bottom:16px;
+      width:54px;
+      height:54px;
+    }
+    .whatsapp-float svg{ width:28px; height:28px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -888,5 +925,20 @@ document.getElementById('year').textContent = new Date().getFullYear();
     cookieBanner.classList.remove('active');
   });
 </script>
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/5511940322506"
+    target="_blank"
+    rel="noopener"
+    aria-label="Falar com a Casa Dela Empório pelo WhatsApp"
+    title="Fale conosco pelo WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 11.5a8 8 0 0 1-11.7 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.5Z"></path>
+      <path d="M9.2 8.8c.2 2.1 1.9 3.9 4 4.2"></path>
+      <path d="M9.3 8.8l1.2-.7"></path>
+      <path d="M13.2 13l.8-1.1"></path>
+    </svg>
+  </a>
+
 </body>
 </html>
